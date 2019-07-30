@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Our first Vue.js Page</title>
+</head>
+<body>
+  <h1>Welcome to our first Vue.js page</h1>
+
+  <div id='vue-app'>
+    <p>The message is {{ message }}</p>
+    <!-- <p v-show="otherMessage.length > 0">The other message is {{ otherMessage }}</p> -->
+    <p v-if="otherMessage">The other message is {{ otherMessage }}</p>
+    <p v-else>There are no other messages.</p>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+const vm = new Vue({
+  el: '#vue-app',
+  data: {
+    message: 'Hello, world!',
+    otherMessage: ''
+  }
+})
+</script>
+
+</body>
+</html>

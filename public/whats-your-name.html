@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>What's your name?</title>
+</head>
+
+<body>
+  <h1>Form Input Experiments</h1>
+
+  <main id="app">
+    <form>
+      <label for="your-name">What's your name?</label>
+      <input type="text" id="your-name" v-model="yourName">
+    </form>
+  
+    <div>
+      <p v-if="yourName">Hello, {{ yourName }}</p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        yourName: ''
+      }
+    })
+  </script>
+</body>
+
+</html>
