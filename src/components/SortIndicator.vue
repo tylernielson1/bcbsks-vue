@@ -1,31 +1,27 @@
 <template>
-  <span>{{ indicator() }}</span>
+  <!-- <span>{{ indicator }}</span> -->
+  <span v-html="indicator"></span>
 </template>
 
 <script>
 export default {
   props: {
     column: String,
-    'sort-field': String,
-    'sort-direction': String
+    sortField: String,
+    sortDirection: String
   },
-  methods: {
+  computed: {
     indicator() {
-      console.log('Column: ', this.column);
-      console.log('Sort Field', this['sort-field']);
-      if (this.column === this['sort-field']) {
-        return this['sort-direction'] === 'asc' ? 'Up' : 'Down'
+      if (this.column === this.sortField) {
+        return this.sortDirection === 'asc' ? '&#8593;' : '&#8595;';
+        // return this.sortDirection === 'asc' ? '⏫' : '⏬';
+      } else {
+        return '';
       }
-
-      return '';
     }
-  },
-  updated() {
-    console.log('Updated.')
   }
-}
+};
 </script>
 
 <style>
-
 </style>

@@ -1,14 +1,17 @@
 <template>
-  <table class="table table-striped table-hover">
+  <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr>
         <th v-for="(column, index) in columns" :key="index" @click="handleColumnClick(column)">
-          {{ renderColumn(column) }}
-          <SortIndicator
-            :column="column.name"
-            :sort-field="lastSortField"
-            :sort-direction="lastSortDirection"
-          />
+          <span :class="getClass(column)">
+            <SortIndicator
+              :column="column.name"
+              :sort-field="lastSortField"
+              :sort-direction="lastSortDirection"
+            />
+            &nbsp;
+            {{ renderColumn(column) }}
+          </span>
         </th>
       </tr>
     </thead>
@@ -49,6 +52,14 @@ export default {
     }
   },
   methods: {
+    getClass(column) {
+      let header = typeof column === 'object' ? column.name : column;
+      if (header === this.lastSortField) {
+        return this.lastSortDirection === 'asc' ? 'sort-asc' : 'sort-desc';
+      } else {
+        return '';
+      }
+    },
     handleColumnClick(column) {
       console.log('You clicked on ', column);
       let sortField = typeof column === 'object' ? column.name : column;
@@ -93,5 +104,17 @@ export default {
 <style>
 th {
   cursor: pointer;
+}
+
+p {
+  font-family: Courier New
+}
+
+.sort-asc::after {
+  content: '⏫'
+}
+
+.sort-desc::after {
+  content: '⏬'
 }
 </style>
