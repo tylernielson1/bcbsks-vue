@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Blue Cross Blue Shield of Kansas says hi."/>
-    <Greeter />
+    <Greeter v-bind:name="name" />
   </div>
 </template>
 
@@ -13,6 +13,11 @@ import Greeter from '@/components/Greeter.vue'
 
 export default {
   name: 'home',
+  data() {
+    return {
+      name: 'Matteo'
+    }
+  },
   components: {
     HelloWorld,
     Greeter

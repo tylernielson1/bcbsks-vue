@@ -53,8 +53,10 @@ export default {
         .then(payees => {
           this.payeesCount = payees.length;
           this.payees = payees;
-          console.log(payees);
         });
+    },
+    getKey(payee) {
+      return payee.id + ' ' + payee.payeeName;
     }
   },
   created() {

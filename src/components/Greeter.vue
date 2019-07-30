@@ -4,10 +4,16 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: 'John'
-    };
+  // props: ['name']
+  // props: {
+    // name: String
+  // }
+  props: {
+    name: {
+      type: String,
+      required: true,
+      // default: 'Tyler'
+    }
   }
 };
 </script>
