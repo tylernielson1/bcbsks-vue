@@ -6,15 +6,15 @@
 export default {
   // props: ['name']
   // props: {
-    // name: String
+  // name: String
   // }
   props: {
     name: {
       type: String,
-      required: true,
+      required: true
       // default: 'Tyler'
     }
-  }
+  },
 };
 </script>
 

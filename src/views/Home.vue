@@ -2,7 +2,8 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Blue Cross Blue Shield of Kansas says hi."/>
-    <Greeter v-bind:name="name" />
+    <Greeter :name="name" />
+    <p>Original name: {{ name }}</p>
   </div>
 </template>
 
