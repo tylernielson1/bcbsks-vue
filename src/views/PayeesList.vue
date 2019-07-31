@@ -1,17 +1,21 @@
 <template>
   <div>
     <h1>Payees List</h1>
+    <FilterForm />
+    <hr>
     <DataGrid v-bind:columns="columns" v-bind:records="payees"/>
   </div>
 </template>
 
 <script>
 import DataGrid from '../components/DataGrid';
+import FilterForm from '../components/FilterForm';
 import dao from '../common/payees-dao';
 
 export default {
   components: {
-    DataGrid
+    DataGrid,
+    FilterForm
   },
   data() {
     return {
