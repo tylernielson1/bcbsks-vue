@@ -14,6 +14,16 @@
         <h2>One-way data binding</h2>
         <Greeter :name="name" />
         <p>Original name: {{ name }}</p>
+        <hr />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3>Inheriting attributes</h3>
+        <h4>No inheritance</h4>
+        <DeepField class="red-background" maxlength="5" />
+        <h4>Inheritance</h4>
+        <DeepFieldBetter class="red-background" maxlength="5" />
       </div>
     </div>
   </div>
@@ -21,10 +31,14 @@
 
 <script>
 import Greeter from '../components/Greeter';
+import DeepField from '../components/DeepField';
+import DeepFieldBetter from '../components/DeepFieldBetter';
 
 export default {
   components: {
-    Greeter
+    Greeter,
+    DeepField,
+    DeepFieldBetter
   },
   data() {
     return {
@@ -41,4 +55,7 @@ export default {
 </script>
 
 <style>
+.red-background {
+  background: red;
+}
 </style>
