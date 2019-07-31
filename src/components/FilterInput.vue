@@ -1,16 +1,10 @@
 <template>
-      <div class="form-group row">
-      <label :for="fieldId" class="col-3 col-form-label text-right">{{ label }}</label>
-      <div class="col-9">
-        <input
-          type="text"
-          :id="fieldId"
-          :name="path"
-          class="form-control"
-          @input="handleInput"
-        />
-      </div>
+  <div class="form-group row">
+    <label :for="fieldId" class="col-2 col-form-label">{{ label }}</label>
+    <div class="col">
+      <input type="text" :id="fieldId" :name="path" class="form-control" @input="handleInput" />
     </div>
+  </div>
 </template>
 
 <script>
@@ -31,9 +25,8 @@ export default {
       this.$emit('update-filter', this.path, event.target.value);
     }
   }
-}
+};
 </script>
 
 <style>
-
 </style>

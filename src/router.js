@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import Playground from './views/Playground';
 import PayeesList from './views/PayeesList';
 
 Vue.use(Router);
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/playground',
+      name: 'playground',
+      component: Playground,
     },
     {
       path: '/payees-list',

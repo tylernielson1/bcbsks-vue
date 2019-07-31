@@ -106,15 +106,11 @@ th {
   cursor: pointer;
 }
 
-p {
-  font-family: Courier New
-}
-
 .sort-asc::after {
-  content: '⏫'
+  content: '⏫';
 }
 
 .sort-desc::after {
-  content: '⏬'
+  content: '⏬';
 }
 </style>
