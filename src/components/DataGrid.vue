@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody v-if="records">
-      <tr v-for="record in localRecords" :key="record.id">
+      <tr v-for="record in localRecords" :key="record.id" @click="handleRowClick(record)">
         <td v-for="(column, index) in columns" :key="index">{{ getValue(record, column) }}</td>
       </tr>
     </tbody>
@@ -59,6 +59,9 @@ export default {
       } else {
         return '';
       }
+    },
+    handleRowClick(record) {
+      this.$emit('select-row', record);
     },
     handleColumnClick(column) {
       console.log('You clicked on ', column);

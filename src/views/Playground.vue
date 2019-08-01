@@ -20,10 +20,10 @@
     <div class="row">
       <div class="col">
         <h3>Inheriting attributes</h3>
-        <h4>No inheritance</h4>
+        <h4>Inheritance of attributes</h4>
         <DeepField class="red-background" maxlength="5" />
-        <h4>Inheritance</h4>
-        <DeepFieldBetter class="red-background" maxlength="5" />
+        <h4>No inheritance of attributes</h4>
+        <DeepFieldBetter class="red-background" maxlength="5" pattern="[0-9]+"/>
       </div>
     </div>
   </div>
@@ -48,6 +48,7 @@ export default {
   methods: {
     handleButtonClick(event) {
       console.log('You clicked on the button');
+      // event.preventDefault();
       console.log('Event: ', event);
     }
   }

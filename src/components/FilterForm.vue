@@ -1,6 +1,11 @@
 <template>
   <form>
-    <FilterInput label="Payee Name:" path="payeeName" @update-filter="handleUpdateFilter" />
+    <FilterInput
+      v-for="field in fields"
+      :key="field.path"
+      v-bind="field"
+      @update-filter="handleUpdateFilter"
+    />
   </form>
 </template>
 
@@ -10,9 +15,24 @@ export default {
   components: {
     FilterInput
   },
+  props: {
+    fields: {
+      type: Array
+    }
+  },
+  data() {
+    const filter = {};
+    this.fields.forEach(field => filter[field.path] = '');
+
+    return {
+      filter
+    };
+  },
   methods: {
     handleUpdateFilter(path, value) {
-      console.log(`FilterForm: ${path} / ${value}`);
+      // console.log(`FilterForm: ${path} / ${value}`);
+      this.filter[path] = value;
+      this.$emit('update-filter', this.filter);
     }
   }
 };

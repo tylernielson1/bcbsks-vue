@@ -3,6 +3,11 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Playground from './views/Playground';
 import PayeesList from './views/PayeesList';
+import Categories from './views/Categories';
+import Payees from './views/Payees';
+import People from './views/People';
+import Transactions from './views/Transactions';
+import PayeeDetails from './views/PayeeDetails';
 
 Vue.use(Router);
 
@@ -21,9 +26,39 @@ export default new Router({
       component: Playground,
     },
     {
-      path: '/payees-list',
-      name: 'payees-list',
-      component: PayeesList,
+      path: '/categories',
+      name: 'categories',
+      component: Categories,
+    },
+    {
+      path: '/payees',
+      component: Payees,
+      children: [
+        {
+          path: 'list',
+          component: PayeesList,
+        },
+        {
+          path: 'details/:id',
+          component: PayeeDetails,
+          props: true
+        },
+        {
+          path: '',
+          name: 'payees',
+          redirect: 'list',
+        },
+      ],
+    },
+    {
+      path: '/people',
+      name: 'people',
+      component: People,
+    },
+    {
+      path: '/tx',
+      name: 'transactions',
+      component: Transactions,
     },
     {
       path: '/about',

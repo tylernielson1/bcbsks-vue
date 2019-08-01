@@ -2,7 +2,14 @@
   <div class="form-group row">
     <label :for="fieldId" class="col-2 col-form-label">{{ label }}</label>
     <div class="col">
-      <input type="text" :id="fieldId" :name="path" class="form-control" @input="handleInput" />
+      <input
+        type="text"
+        v-bind="$attrs"
+        :id="fieldId"
+        :name="path"
+        class="form-control"
+        @input="handleInput"
+      />
     </div>
   </div>
 </template>
