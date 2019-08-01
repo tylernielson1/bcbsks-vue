@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-striped table-hover table-bordered">
+  <table class="table table-striped table-hover table-info">
     <thead>
       <tr>
         <th v-for="(column, index) in columns" :key="index" @click="handleColumnClick(column)">
@@ -104,9 +104,18 @@ export default {
 };
 </script>
 
-<style>
-th {
+<style scoped>
+th, td {
   cursor: pointer;
+}
+
+.table-info tr:nth-child(odd) {
+  background: white;
+}
+
+.table-hover.table-info tr:hover {
+  background: #007bff;
+  color: white;
 }
 
 .sort-asc::after {

@@ -7,18 +7,24 @@ const queryPayees = () => {
 };
 
 const getById = id => {
-  return fetch(`${baseUrl}/${id}`)
-    .then(response => response.json())
+  return fetch(`${baseUrl}/${id}?_delay=2000`)
+    .then(response => {
+      if (!response.ok) {
+        return Promise.reject({ status: response.status });
+      }
+      return response.json();
+    })
     .catch(handleError);
 };
 
 function handleError(error) {
   console.error('Payees DAO error');
-  return Promise.reject('DAO error. Please try again.');
+  return Promise.reject({ message: 'DAO error. Please try again.', ...error });
 }
 
 const dao = {
   queryPayees,
+  getById,
 };
 
 export default dao;
