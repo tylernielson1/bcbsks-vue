@@ -1,17 +1,7 @@
 <template>
   <section>
     <h3>Payee Details</h3>
-    <div class="card" v-if="payee">
-      <div class="card-header bg-primary text-white">{{ payee.payeeName}}</div>
-      <ul class="list-group">
-        <li class="list-group-item" v-if="payee.address">{{ payee.address.street }}</li>
-        <li
-          class="list-group-item"
-          v-if="payee.address"
-        >{{ payee.address.city}}, {{ payee.address.state }}</li>
-        <li class="list-group-item">Category: {{ payee.categoryId }}</li>
-      </ul>
-    </div>
+    <PayeeDetailsCard v-if="payee" payee="payee" />
     <div class="card" v-else-if="error">
       <div class="card-header bg-danger text-white">Error!</div>
       <div class="card-body">{{ error }}</div>
@@ -25,10 +15,12 @@
 <script>
 import dao from '../common/payees-dao';
 import Spinner from '../components/Spinner';
+import PayeeDetailsCard from '../components/PayeeDetailsCard'
 
 export default {
   components: {
-    Spinner
+    Spinner,
+    PayeeDetailsCard
   },
   props: ['id'],
   data() {
