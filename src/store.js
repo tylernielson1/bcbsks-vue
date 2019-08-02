@@ -10,6 +10,7 @@ export default new Vuex.Store({
     payees: [],
     isLoading: false,
     error: null,
+    filterCriteria: {},
   },
   mutations: {
     increment(state) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     decrement(state) {
       state.counter = state.counter - 1;
+    },
+    updateFilterCriteria(state, payload) {
+      state.filterCriteria = { ...payload.filterCriteria };
     },
     requestPayees(state) {
       state.isLoading = true;
@@ -38,6 +42,9 @@ export default new Vuex.Store({
     payees(state) {
       return state.payees;
     },
+    filterCriteria(state) {
+      return state.filterCriteria;
+    }
   },
   actions: {
     fetchPayees(context) {

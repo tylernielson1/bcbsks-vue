@@ -7,7 +7,7 @@ const queryPayees = () => {
 };
 
 const getById = id => {
-  return fetch(`${baseUrl}/${id}?_delay=2000`)
+  return fetch(`${baseUrl}/${id}`)
     .then(response => {
       if (!response.ok) {
         return Promise.reject({ status: response.status });

@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     altFilteredPayees() {
-      let payees = [...this.payees];
+      let payees = [...this.$store.getters.payees];
       return payees.filter(payee =>
         Object.entries(this.filterCriteria).every(
           ([path, value]) =>
@@ -57,7 +57,7 @@ export default {
       );
     },
     filteredPayees() {
-      let payees = [...this.payees];
+      let payees = [...this.$store.getters.payees];
       const filterKeys = Object.keys(this.filterCriteria);
       payees = payees.filter(payee => {
         let success = true;
@@ -80,15 +80,29 @@ export default {
   },
   methods: {
     handleUpdateFilter(filterCriteria) {
-      console.log('PayeesList filter criteria: ', filterCriteria);
       this.filterCriteria = filterCriteria;
     },
     handleSelectRow(record) {
-      this.$router.push(`/payees/details/${record.id}`)
+      this.$router.push(`/payees/details/${record.id}`);
     }
   },
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit('updateFilterCriteria', {
+      filterCriteria: this.filterCriteria
+    });
+    next();
+  },
   created() {
-    dao.queryPayees().then(payees => (this.payees = payees));
+    const filterCriteria = this.$store.getters.filterCriteria;
+    if (! _.isEmpty(filterCriteria)) {
+      this.filterCriteria = {...this.filterCriteria, ...filterCriteria};
+      this.filterConfig = this.filterConfig.map(config => {
+        if(_.has(filterCriteria, config.path)) {
+          config.value = filterCriteria[config.path];
+        }
+        return config;
+      })
+    }
   }
 };
 </script>

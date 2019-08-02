@@ -20,7 +20,7 @@ import * as _ from 'lodash';
 export default {
   props: {
     label: String,
-    path: String
+    path: String,
   },
   computed: {
     fieldId() {

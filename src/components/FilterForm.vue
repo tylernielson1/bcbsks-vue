@@ -22,7 +22,7 @@ export default {
   },
   data() {
     const filter = {};
-    this.fields.forEach(field => filter[field.path] = '');
+    this.fields.forEach(field => filter[field.path] = field.value || '');
 
     return {
       filter
