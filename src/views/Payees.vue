@@ -5,11 +5,15 @@
     </div>
     <nav class="text-center">
       <ul class="list-inline">
-        <li class="list-inline-item"><router-link to="/payees/list">List</router-link></li>
-        <li class="list-inline-item">Add</li>
+        <li class="list-inline-item">
+          <router-link to="/payees/list">List</router-link>
+        </li>
+        <li class="list-inline-item">
+          <router-link to="/payees/add">Add</router-link>
+        </li>
       </ul>
     </nav>
-    <router-view/>
+    <router-view />
   </section>
 </template>
 

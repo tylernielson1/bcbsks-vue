@@ -15,6 +15,11 @@ export default {
       // default: 'Tyler'
     }
   },
+  data() {
+    return {
+
+    };
+  }
 };
 </script>
 

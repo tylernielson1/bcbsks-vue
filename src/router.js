@@ -8,6 +8,7 @@ import Payees from './views/Payees';
 import People from './views/People';
 import Transactions from './views/Transactions';
 import PayeeDetails from './views/PayeeDetails';
+import AddPayee from './views/AddPayee';
 
 Vue.use(Router);
 
@@ -38,6 +39,11 @@ export default new Router({
           path: 'list',
           component: PayeesList,
           name:'payees-list'
+        },
+        {
+          path: 'add',
+          component: AddPayee,
+          name:'payee-add'
         },
         {
           path: 'details/:id',
