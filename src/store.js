@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import dao from './common/payees-dao';
+import * as _ from 'lodash';
 
 Vue.use(Vuex);
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
     isLoading: false,
     error: null,
     filterCriteria: {},
+    gridSort: {},
   },
   mutations: {
     increment(state) {
@@ -18,6 +20,9 @@ export default new Vuex.Store({
     },
     decrement(state) {
       state.counter = state.counter - 1;
+    },
+    updateSortCriteria(state, payload) {
+      state.gridSort[payload.key] = { ...payload };
     },
     updateFilterCriteria(state, payload) {
       state.filterCriteria = { ...payload.filterCriteria };
@@ -44,7 +49,9 @@ export default new Vuex.Store({
     },
     filterCriteria(state) {
       return state.filterCriteria;
-    }
+    },
+    getSortCriteria: state => key => state.gridSort[key],
+    hasSortCriteria: state => key => _.has(state.gridSort, key),
   },
   actions: {
     fetchPayees(context) {

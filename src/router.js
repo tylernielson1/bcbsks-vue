@@ -37,10 +37,12 @@ export default new Router({
         {
           path: 'list',
           component: PayeesList,
+          name:'payees-list'
         },
         {
           path: 'details/:id',
           component: PayeeDetails,
+          name: 'payee-details',
           props: true
         },
         {

@@ -51,20 +51,18 @@ export default {
       );
     }
   },
+  created() {
+    if (this.$store.getters.hasSortCriteria(this.$route.path)) {
+      const { sortField, sortDirection } = this.$store.getters.getSortCriteria(
+        this.$route.path
+      );
+      this.lastSortField = sortField;
+      this.lastSortDirection = sortDirection;
+      // console.log(`sortField: ${sortField} / sortDirection: ${sortDirection} `);
+    }
+  },
   methods: {
-    getClass(column) {
-      let header = typeof column === 'object' ? column.name : column;
-      if (header === this.lastSortField) {
-        return this.lastSortDirection === 'asc' ? 'sort-asc' : 'sort-desc';
-      } else {
-        return '';
-      }
-    },
-    handleRowClick(record) {
-      this.$emit('select-row', record);
-    },
     handleColumnClick(column) {
-      console.log('You clicked on ', column);
       let sortField = typeof column === 'object' ? column.name : column;
       let sortDirection = 'asc';
       if (
@@ -76,6 +74,22 @@ export default {
 
       this.lastSortField = sortField;
       this.lastSortDirection = sortDirection;
+      this.$store.commit('updateSortCriteria', {
+        key: this.$route.path,
+        sortField,
+        sortDirection
+      });
+    },
+    getClass(column) {
+      let header = typeof column === 'object' ? column.name : column;
+      if (header === this.lastSortField) {
+        return this.lastSortDirection === 'asc' ? 'sort-asc' : 'sort-desc';
+      } else {
+        return '';
+      }
+    },
+    handleRowClick(record) {
+      this.$emit('select-row', record);
     },
     getValue(record, column) {
       let path = '';
@@ -105,7 +119,8 @@ export default {
 </script>
 
 <style scoped>
-th, td {
+th,
+td {
   cursor: pointer;
 }
 
